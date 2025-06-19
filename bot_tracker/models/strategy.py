@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
-from bot_tracker.models import db 
+from bot_tracker.extensions import db  
 
 class Strategy(db.Model):
     __tablename__ = 'strategies'

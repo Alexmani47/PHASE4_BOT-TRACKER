@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Float, Date, ForeignKey
 from sqlalchemy.orm import relationship
-from bot_tracker.models import db  
+from bot_tracker.extensions import db 
 from datetime import datetime
 
 class Trade(db.Model):
