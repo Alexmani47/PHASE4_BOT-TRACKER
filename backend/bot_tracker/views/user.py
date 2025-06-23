@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from werkzeug.security import generate_password_hash
 from bot_tracker.models.user import User
 from bot_tracker.models import db
 
@@ -40,11 +41,13 @@ def create_user():
     if not data.get('username') or not data.get('email') or not data.get('password'):
         return jsonify({'error': 'Missing required fields'}), 400
 
+    hashed_password = generate_password_hash(data['password'])
+
     user = User(
         username=data['username'],
         email=data['email'],
-        password=data['password'],
-        is_admin=data.get('is_admin', False)  
+        password=hashed_password,
+        is_admin=data.get('is_admin', False)
     )
     db.session.add(user)
     db.session.commit()
@@ -67,7 +70,9 @@ def update_user(user_id):
     data = request.get_json()
     user.username = data.get('username', user.username)
     user.email = data.get('email', user.email)
-    user.password = data.get('password', user.password)
+
+    if 'password' in data and data['password']:
+        user.password = generate_password_hash(data['password'])
 
     if current_user.is_admin:
         user.is_admin = data.get('is_admin', user.is_admin)

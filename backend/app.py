@@ -25,7 +25,7 @@ def create_app():
     migrate.init_app(app, db)
     jwt.init_app(app)
     mail.init_app(app)
-    CORS(app)
+    CORS(app, origins=["http://localhost:5173"], supports_credentials=True)
     
     from bot_tracker.views.user import user_bp
     from bot_tracker.views.bot import bot_bp
