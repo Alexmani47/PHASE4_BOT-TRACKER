@@ -10,7 +10,7 @@ function Trades() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('http://localhost:5000/trades', {
+    fetch('http://localhost:5000/trades/', {
       headers: {
         Authorization: `Bearer ${token}`
       }
