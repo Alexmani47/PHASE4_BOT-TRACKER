@@ -6,7 +6,7 @@ class User(db.Model):
     __tablename__ = 'users'
 
     id = Column(Integer, primary_key=True)
-    user_name = Column(String, unique=True, nullable=False)  # ✅ use user_name consistently
+    user_name = Column(db.String(100), unique=True, nullable=False)  
     email = Column(String, unique=True, nullable=False)
     password = Column(String, nullable=False)
     is_admin = Column(Boolean, default=False)

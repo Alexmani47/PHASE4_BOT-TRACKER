@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+import {api_url} from './config'; 
+console.log(api_url);
 function Login() {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
@@ -16,7 +17,7 @@ function Login() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/auth/login', {
+      const res = await fetch(`${api_url}/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -84,7 +85,7 @@ function Login() {
           {loading ? 'Logging in...' : 'Login'}
         </button>
 
-        {/* ✅ Register Link */}
+        {/*  Register Link */}
         <p className="mt-4 text-sm text-center text-gray-600 dark:text-gray-300">
           Don’t have an account?{' '}
           <a href="/register" className="text-blue-600 hover:underline dark:text-blue-400">

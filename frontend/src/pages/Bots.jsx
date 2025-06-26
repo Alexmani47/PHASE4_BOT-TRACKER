@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-
+import { api_url } from './config'; 
 function Bots() {
   const [bots, setBots] = useState([]);
   const [editingId, setEditingId] = useState(null);
@@ -12,7 +12,7 @@ function Bots() {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    fetch('http://localhost:5000/bots/', {
+    fetch(`${api_url}/bots/`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -21,7 +21,7 @@ function Bots() {
       .then(data => setBots(data))
       .catch(() => toast.error('Failed to load bots'));
 
-    fetch('http://localhost:5000/auth/me', {
+    fetch(`${api_url}/auth/me`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -30,7 +30,7 @@ function Bots() {
       .then(data => {
         if (data?.is_admin) {
           setIsAdmin(true);
-          fetch('http://localhost:5000/users/', {
+          fetch(`${api_url}/users/`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -45,7 +45,7 @@ function Bots() {
 
   const handleDelete = async (id) => {
     if (!confirm('Are you sure you want to delete this bot?')) return;
-    const res = await fetch(`http://localhost:5000/bots/${id}`, {
+    const res = await fetch(`${api_url}/bots/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -64,7 +64,7 @@ function Bots() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    const res = await fetch(`http://localhost:5000/bots/${editingId}`, {
+    const res = await fetch(`${api_url}/bots/${editingId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -85,7 +85,7 @@ function Bots() {
 
   const handleCreate = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:5000/bots/', {
+    const res = await fetch(`${api_url}/bots/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -18,11 +18,9 @@ function Layout() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col dark:bg-gray-900 dark:text-white">
-      <nav className="bg-white dark:bg-gray-800 shadow px-6 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold text-indigo-600 dark:text-indigo-300">
-          Bot Tracker
-        </h1>
+    <div className="min-h-screen flex flex-col text-white">
+      <nav className="bg-black/70 shadow px-6 py-4 flex justify-between items-center">
+        <h1 className="text-xl font-bold text-indigo-300">Bot Tracker</h1>
         <div className="flex gap-6">
           {navItems.map((item) => (
             <NavLink
@@ -30,8 +28,10 @@ function Layout() {
               to={item.path}
               className={({ isActive }) =>
                 `text-sm font-medium ${
-                  isActive ? 'text-indigo-600 dark:text-indigo-300' : 'text-gray-600 dark:text-gray-300'
-                } hover:text-indigo-800 dark:hover:text-indigo-100`
+                  isActive
+                    ? 'text-indigo-300 underline'
+                    : 'text-gray-300 hover:text-white'
+                }`
               }
             >
               {item.label}
@@ -39,15 +39,23 @@ function Layout() {
           ))}
           <button
             onClick={handleLogout}
-            className="text-sm text-red-500 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 font-medium"
+            className="text-sm text-red-400 hover:text-red-300 font-medium"
           >
             Logout
           </button>
         </div>
       </nav>
 
-      <main className="flex-1 p-6 bg-gray-100 dark:bg-gray-900 transition-all">
-        <Outlet />
+      <main
+        className="flex-1 bg-cover bg-center min-h-screen"
+        style={{
+          backgroundImage:
+            "url('https://blogs.debutinfotech.com/wp-content/uploads/2025/01/Crypto-AI-Quantitative-Trading-Bots.jpg')",
+        }}
+      >
+        <div className="backdrop-blur-sm bg-black/60 min-h-screen p-6">
+          <Outlet />
+        </div>
       </main>
     </div>
   );

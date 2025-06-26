@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+import { api_url } from './config'; 
 function Dashboard() {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
@@ -36,7 +36,7 @@ function Dashboard() {
         setIsAdmin(data.is_admin);
       });
 
-    fetch('http://localhost:5000/users/dashboard', {
+    fetch(`${api_url}/users/dashboard`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -70,7 +70,7 @@ function Dashboard() {
 
   const fetchUsers = async () => {
     const token = localStorage.getItem('token');
-    const res = await fetch('http://localhost:5000/users/', {
+    const res = await fetch(`${api_url}/users/`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (res.ok) {
@@ -84,7 +84,7 @@ function Dashboard() {
 
   const promoteUser = async (id) => {
     const token = localStorage.getItem('token');
-    const res = await fetch(`http://localhost:5000/users/${id}`, {
+    const res = await fetch(`${api_url}/users/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -102,7 +102,7 @@ function Dashboard() {
 
   const fetchAllTrades = async () => {
     const token = localStorage.getItem('token');
-    const res = await fetch('http://localhost:5000/trades/', {
+    const res = await fetch(`${api_url}/trades/`, {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (res.ok) {

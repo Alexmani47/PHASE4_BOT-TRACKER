@@ -10,6 +10,9 @@ flask-jwt-extended = "*"
 flask-mail = "*"
 flask-migrate = "*"
 flask-cors = "*"
+flask = "*"
+psycopg2-binary = "*"
+gunicorn = "*"
 
 [dev-packages]
 

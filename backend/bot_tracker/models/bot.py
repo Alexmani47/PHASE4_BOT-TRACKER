@@ -6,7 +6,7 @@ class Bot(db.Model):
     __tablename__ = 'bots'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
+    name = db.Column(db.String(100), unique=True, nullable=False)
     strategy = db.Column(db.String, nullable=True)
     platform = db.Column(db.String, nullable=True)
 

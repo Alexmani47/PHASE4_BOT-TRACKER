@@ -6,7 +6,7 @@ from flask_cors import CORS
 def create_app():
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///bot_tracker.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://bottracker_db_user:Rl3RLFQMFILXDvrwkxL1Oul6gtjCuR4t@dpg-d1ej6rqli9vc73a4rc50-a.oregon-postgres.render.com/bottracker_db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['JWT_SECRET_KEY'] = 'your-secret-key'
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=1)

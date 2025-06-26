@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+import { api_url } from './config';
 function Register() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -20,7 +20,7 @@ function Register() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:5000/auth/register', {
+      const res = await fetch(`${api_url}/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

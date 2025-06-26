@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-
+import { api_url } from './config'; 
 function Trades() {
   const [trades, setTrades] = useState([]);
   const [bots, setBots] = useState([]);
@@ -16,7 +16,7 @@ function Trades() {
 
   useEffect(() => {
     // Load trades
-    fetch('http://localhost:5000/trades/', {
+    fetch(`${api_url}/trades/`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -24,7 +24,7 @@ function Trades() {
       .catch(() => toast.error('Failed to load trades'));
 
     // Load bots for dropdown
-    fetch('http://localhost:5000/bots/', {
+    fetch(`${api_url}/bots/`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -34,7 +34,7 @@ function Trades() {
 
   const handleDelete = async (id) => {
     if (!confirm('Delete this trade?')) return;
-    const res = await fetch(`http://localhost:5000/trades/${id}`, {
+    const res = await fetch(`${api_url}/trades/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` }
     });
@@ -58,7 +58,7 @@ function Trades() {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    const res = await fetch(`http://localhost:5000/trades/${editingId}`, {
+    const res = await fetch(`${api_url}/trades/${editingId}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ function Trades() {
 
   const handleCreate = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:5000/trades/', {
+    const res = await fetch(`${api_url}/trades/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
