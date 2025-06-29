@@ -28,7 +28,7 @@ function Dashboard() {
 
     setUsername(usernameStored);
 
-    fetch('http://localhost:5000/auth/me', {
+    fetch(`${api_url}/auth/me`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())
@@ -44,7 +44,7 @@ function Dashboard() {
       .then(async (res) => {
         if (!res.ok) {
           const errorData = await res.json();
-          throw new Error(errorData.message || 'Failed to fetch dashboard data');
+          throw new Error(errorData.message || 'Failed to display dashboard data');
         }
         return res.json();
       })

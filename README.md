@@ -9,6 +9,7 @@ Bot Tracker is a full-stack web application that allows users to manage, monitor
 - Role-based access control (regular users vs. admins)
 
 ### User Dashboard
+- LogIn with "morin@gmail.com" and password "morin1" to view the difference between an admin and a regular user Dashboard.
 - View personal bots, trades, and strategies
 - Track individual bot performance
 
