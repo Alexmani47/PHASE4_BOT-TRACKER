@@ -22,7 +22,7 @@ def create_app():
     migrate.init_app(app, db)
     jwt.init_app(app)
     mail.init_app(app)
-    CORS(app, origins=["https://sweet-fenglisu-6e8663.netlify.app"], supports_credentials=True)
+    CORS(app, origins=["https://fanciful-bavarois-464bf1.netlify.app/"], supports_credentials=True)
 
     from bot_tracker.views.user import user_bp
     from bot_tracker.views.bot import bot_bp
