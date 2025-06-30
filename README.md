@@ -65,6 +65,11 @@ bot-tracker/
 │ ├── public/ # Static assets
 │ └── index.html # Main HTML entry
 
+##  Project Demo
+
+▶️ [Click here to watch the demo](https://raw.githubusercontent.com/Alexmani47/PHASE4_BOT-TRACKER/main/Demo_Video.mp4)
+
+
 
 ## Getting Started
 
